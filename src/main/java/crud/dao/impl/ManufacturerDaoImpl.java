@@ -20,7 +20,7 @@ public class ManufacturerDaoImpl implements ManufacturerDao {
 
     @Override
     public Optional<Manufacturer> get(Long id) {
-        return Optional.of(Storage.manufacturersStorage.get(id));
+        return Optional.ofNullable(Storage.manufacturersStorage.get(id));
     }
 
     @Override

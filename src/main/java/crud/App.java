@@ -25,6 +25,7 @@ public class App {
         System.out.println("New manufacturer: " + manufacturer2);
         manufacturerService.update(manufacturer2);
         System.out.println("Second update: " + manufacturerService.getAll());
+        manufacturerService.get(3L);
         manufacturerService.delete(1L);
         System.out.println("After delete on ID 1: " + manufacturerService.getAll());
     }
