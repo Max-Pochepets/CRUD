@@ -1,16 +1,34 @@
 package crud.storage;
 
+import crud.model.Car;
+import crud.model.Driver;
 import crud.model.Manufacturer;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Storage {
-    public static List<Manufacturer> manufacturers = new ArrayList<>();
+    private static Long carId = 0L;
+    private static Long driverId = 0L;
     private static Long manufacturerId = 0L;
+    public static Map<Long, Car> cars = new HashMap<>();
+    public static Map<Long, Driver> drivers = new HashMap<>();
+    public static Map<Long, Manufacturer> manufacturers = new HashMap<>();
+
+    public static Car addCar(Car car) {
+        car.setId(++carId);
+        cars.put(carId, car);
+        return car;
+    }
+
+    public static Driver addDriver(Driver driver) {
+        driver.setId(++driverId);
+        drivers.put(driverId, driver);
+        return driver;
+    }
 
     public static Manufacturer addManufacturer(Manufacturer manufacturer) {
         manufacturer.setId(++manufacturerId);
-        manufacturers.add(manufacturer);
+        manufacturers.put(manufacturerId, manufacturer);
         return manufacturer;
     }
 }
