@@ -5,12 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Storage {
-    public static List<Manufacturer> manufacturersStorage = new ArrayList<>();
+    public static List<Manufacturer> manufacturers = new ArrayList<>();
     private static Long manufacturerId = 0L;
 
     public static Manufacturer addManufacturer(Manufacturer manufacturer) {
         manufacturer.setId(++manufacturerId);
-        manufacturersStorage.add(manufacturer);
+        manufacturers.add(manufacturer);
         return manufacturer;
     }
 }
