@@ -1,15 +1,15 @@
 package crud.service.abstraction.src;
 
-import java.util.Map;
+import java.util.List;
 
 public interface Service<T> {
     T create(T element);
 
-    T get(Long id);
+    T get(long id);
 
-    Map<Long, T> getAll();
+    List<T> getAll();
 
     T update(T element);
 
-    boolean delete(Long id);
+    boolean delete(long id);
 }

@@ -4,40 +4,34 @@ import crud.dao.abstraction.ManufacturerDao;
 import crud.lib.DaoImpl;
 import crud.model.Manufacturer;
 import crud.storage.Storage;
-import java.util.Map;
+import java.util.List;
 import java.util.Optional;
 
 @DaoImpl
 public class ManufacturerDaoImpl implements ManufacturerDao {
     @Override
     public Manufacturer create(Manufacturer manufacturer) {
-        if (Storage.manufacturersStorage.containsValue(manufacturer)) {
-            return manufacturer;
-        }
-        Storage.addManufacturer(manufacturer);
-        return Storage.manufacturersStorage.get(manufacturer.getId());
+        return Storage.addManufacturer(manufacturer);
     }
 
     @Override
-    public Optional<Manufacturer> get(Long id) {
-        return Optional.ofNullable(Storage.manufacturersStorage.get(id));
+    public Optional<Manufacturer> get(long id) {
+        return Optional.ofNullable(Storage.manufacturersStorage.get((int) id));
     }
 
     @Override
-    public Map<Long, Manufacturer> getAll() {
+    public List<Manufacturer> getAll() {
         return Storage.manufacturersStorage;
     }
 
     @Override
     public Manufacturer update(Manufacturer manufacturer) {
-        if (Storage.manufacturersStorage.containsKey(manufacturer.getId())) {
-            Storage.manufacturersStorage.put(manufacturer.getId(), manufacturer);
-        }
-        return create(manufacturer);
+        Storage.manufacturersStorage.set((int) manufacturer.getId(), manufacturer);
+        return manufacturer;
     }
 
     @Override
-    public boolean delete(Long id) {
-        return Storage.manufacturersStorage.remove(id, Storage.manufacturersStorage.get(id));
+    public boolean delete(long id) {
+        return Storage.manufacturersStorage.remove(Storage.manufacturersStorage.get((int) id));
     }
 }

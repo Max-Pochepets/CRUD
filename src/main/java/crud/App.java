@@ -12,8 +12,7 @@ public class App {
                 = (ManufacturerService) injector.getInstance(ManufacturerService.class);
         System.out.println("Representing whole list: " + manufacturerService.getAll());
         Manufacturer manufacturer = new Manufacturer("Tesla", "USA");
-        manufacturerService.create(manufacturer);
-        System.out.println("Manufacturer was created: " + manufacturerService.getAll());
+        System.out.println("Manufacturer was created: " + manufacturerService.create(manufacturer));
         System.out.println("Representing single element with ID 1: " + manufacturerService.get(1L));
         Manufacturer manufacturer1 = new Manufacturer("Audi", "Germany");
         manufacturer1.setId(1L);

@@ -5,7 +5,7 @@ import crud.lib.Inject;
 import crud.lib.ServiceImpl;
 import crud.model.Manufacturer;
 import crud.service.abstraction.ManufacturerService;
-import java.util.Map;
+import java.util.List;
 
 @ServiceImpl
 public class ManufacturerServiceImpl implements ManufacturerService {
@@ -18,15 +18,12 @@ public class ManufacturerServiceImpl implements ManufacturerService {
     }
 
     @Override
-    public Manufacturer get(Long id) {
-        if (manufacturerDao.get(id).isEmpty()) {
-            return null;
-        }
+    public Manufacturer get(long id) {
         return manufacturerDao.get(id).get();
     }
 
     @Override
-    public Map<Long, Manufacturer> getAll() {
+    public List<Manufacturer> getAll() {
         return manufacturerDao.getAll();
     }
 
@@ -36,7 +33,7 @@ public class ManufacturerServiceImpl implements ManufacturerService {
     }
 
     @Override
-    public boolean delete(Long id) {
+    public boolean delete(long id) {
         return manufacturerDao.delete(id);
     }
 }
