@@ -1,15 +1,12 @@
 package crud.service.impl;
 
 import crud.dao.abstraction.CarDao;
-import crud.dao.abstraction.DriverDao;
 import crud.lib.Inject;
 import crud.lib.ServiceImpl;
 import crud.model.Car;
 import crud.model.Driver;
 import crud.service.abstraction.CarService;
-
 import java.util.List;
-import java.util.stream.Collectors;
 
 @ServiceImpl
 public class CarServiceImpl implements CarService {

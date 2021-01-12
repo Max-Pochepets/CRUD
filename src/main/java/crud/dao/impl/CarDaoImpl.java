@@ -3,9 +3,7 @@ package crud.dao.impl;
 import crud.dao.abstraction.CarDao;
 import crud.lib.DaoImpl;
 import crud.model.Car;
-import crud.model.Manufacturer;
 import crud.storage.Storage;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;

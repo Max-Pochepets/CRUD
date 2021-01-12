@@ -21,49 +21,54 @@ public class App {
     private static final Driver DRIVER_3 = new Driver("BOB", "IEH709898SDF7689SDF231");
 
     public static void main(String[] args) {
-        ManufacturerService MANUFACTURER_SERVICE
+        final ManufacturerService manufacturerService
                 = (ManufacturerService) INJECTOR.getInstance(ManufacturerService.class);
-        CarService CAR_SERVICE = (CarService) INJECTOR.getInstance(CarService.class);
-        DriverService DRIVER_SERVICE = (DriverService) INJECTOR.getInstance(DriverService.class);
+        final CarService carService
+                = (CarService) INJECTOR.getInstance(CarService.class);
+        final DriverService driverService
+                = (DriverService) INJECTOR.getInstance(DriverService.class);
 
-        MANUFACTURER_SERVICE.create(MANUFACTURER);
-        MANUFACTURER_SERVICE.create(MANUFACTURER_2);
-        MANUFACTURER_SERVICE.create(MANUFACTURER_3);
-        System.out.println("Displaying all manufacturers: " + MANUFACTURER_SERVICE.getAll());
+        manufacturerService.create(MANUFACTURER);
+        manufacturerService.create(MANUFACTURER_2);
+        manufacturerService.create(MANUFACTURER_3);
+        System.out.println("Displaying all manufacturers: " + manufacturerService.getAll());
 
-        CAR_SERVICE.create(CAR);
-        CAR_SERVICE.create(CAR_2);
-        CAR_SERVICE.create(CAR_3);
-        System.out.println("Displaying all cars: " + CAR_SERVICE.getAll());
+        carService.create(CAR);
+        carService.create(CAR_2);
+        carService.create(CAR_3);
+        System.out.println("Displaying all cars: " + carService.getAll());
 
-        DRIVER_SERVICE.create(DRIVER);
-        DRIVER_SERVICE.create(DRIVER_2);
-        DRIVER_SERVICE.create(DRIVER_3);
-        System.out.println("Displaying all drivers: " + DRIVER_SERVICE.getAll());
+        driverService.create(DRIVER);
+        driverService.create(DRIVER_2);
+        driverService.create(DRIVER_3);
+        System.out.println("Displaying all drivers: " + driverService.getAll());
 
-        CAR_SERVICE.addDriverToCar(DRIVER, CAR);
-        CAR_SERVICE.addDriverToCar(DRIVER_2, CAR);
-        CAR_SERVICE.addDriverToCar(DRIVER_3, CAR);
-        CAR_SERVICE.addDriverToCar(DRIVER, CAR_2);
-        CAR_SERVICE.addDriverToCar(DRIVER_2, CAR_2);
-        CAR_SERVICE.addDriverToCar(DRIVER, CAR_3);
-        System.out.println("Displaying all cars after assigning drivers: " + CAR_SERVICE.getAll());
+        carService.addDriverToCar(DRIVER, CAR);
+        carService.addDriverToCar(DRIVER_2, CAR);
+        carService.addDriverToCar(DRIVER_3, CAR);
+        carService.addDriverToCar(DRIVER, CAR_2);
+        carService.addDriverToCar(DRIVER_2, CAR_2);
+        carService.addDriverToCar(DRIVER, CAR_3);
+        System.out.println("Displaying all cars after assigning drivers: " + carService.getAll());
 
-        System.out.println("Cars driven by driver with ID 2" + CAR_SERVICE.getAllByDriver(2L));
+        System.out.println("Cars driven by driver with ID 2" + carService.getAllByDriver(2L));
 
         for (long i = 1; i <= 3; i++) {
-            System.out.println("Manufacturer with ID " + i + ": " + MANUFACTURER_SERVICE.get(i));
-            System.out.println("Car with ID " + i + ": " + CAR_SERVICE.get(i));
-            System.out.println("Driver with ID " + i + ": " + DRIVER_SERVICE.get(i));
+            System.out.println("Manufacturer with ID " + i + ": " + manufacturerService.get(i));
+            System.out.println("Car with ID " + i + ": " + carService.get(i));
+            System.out.println("Driver with ID " + i + ": " + driverService.get(i));
         }
 
         for (long i = 3; i > 0; i--) {
-            MANUFACTURER_SERVICE.delete(i);
-            CAR_SERVICE.delete(i);
-            DRIVER_SERVICE.delete(i);
-            System.out.println("Manufacturers after deleting by ID " + i + ": " + MANUFACTURER_SERVICE.getAll());
-            System.out.println("Cars after deleting by ID " + i + ": " + CAR_SERVICE.getAll());
-            System.out.println("Manufacturers after deleting by ID " + i + ": " + DRIVER_SERVICE.getAll());
+            manufacturerService.delete(i);
+            carService.delete(i);
+            driverService.delete(i);
+            System.out.println("Manufacturers after deleting by ID " + i + ": "
+                    + manufacturerService.getAll());
+            System.out.println("Cars after deleting by ID " + i + ": "
+                    + carService.getAll());
+            System.out.println("Manufacturers after deleting by ID " + i + ": "
+                    + driverService.getAll());
         }
     }
 }

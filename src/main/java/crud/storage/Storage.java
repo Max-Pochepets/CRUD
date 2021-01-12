@@ -7,12 +7,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Storage {
-    private static Long carId = 0L;
-    private static Long driverId = 0L;
-    private static Long manufacturerId = 0L;
     public static Map<Long, Car> cars = new HashMap<>();
     public static Map<Long, Driver> drivers = new HashMap<>();
     public static Map<Long, Manufacturer> manufacturers = new HashMap<>();
+    private static Long carId = 0L;
+    private static Long driverId = 0L;
+    private static Long manufacturerId = 0L;
 
     public static Car addCar(Car car) {
         car.setId(++carId);

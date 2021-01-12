@@ -5,7 +5,6 @@ import crud.lib.Inject;
 import crud.lib.ServiceImpl;
 import crud.model.Driver;
 import crud.service.abstraction.DriverService;
-
 import java.util.List;
 
 @ServiceImpl
