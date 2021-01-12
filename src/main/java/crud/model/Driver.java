@@ -3,7 +3,7 @@ package crud.model;
 import java.util.Objects;
 
 public class Driver {
-    private long id;
+    private Long id;
     private String name;
     private String licenceNumber;
 
@@ -12,11 +12,11 @@ public class Driver {
         this.licenceNumber = licenceNumber;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

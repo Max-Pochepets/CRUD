@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class Car {
-    private long id;
+    private Long id;
     private String model;
     private Manufacturer manufacturer;
     private List<Driver> drivers;
@@ -16,11 +16,11 @@ public class Car {
         drivers = new ArrayList<>();
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

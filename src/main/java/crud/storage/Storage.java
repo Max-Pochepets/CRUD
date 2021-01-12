@@ -6,10 +6,10 @@ import java.util.List;
 
 public class Storage {
     public static List<Manufacturer> manufacturersStorage = new ArrayList<>();
-    private static long manufacturerId = 0L;
+    private static Long manufacturerId = 0L;
 
     public static Manufacturer addManufacturer(Manufacturer manufacturer) {
-        manufacturer.setId(manufacturerId++);
+        manufacturer.setId(++manufacturerId);
         manufacturersStorage.add(manufacturer);
         return manufacturer;
     }

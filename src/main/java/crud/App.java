@@ -17,13 +17,9 @@ public class App {
         Manufacturer manufacturer1 = new Manufacturer("Audi", "Germany");
         manufacturer1.setId(1L);
         System.out.println("New manufacturer: " + manufacturer1);
-        System.out.println("Representing updated value: "
-                + manufacturerService.update(manufacturer1));
-        Manufacturer manufacturer2 = new Manufacturer("Mercedes", "Germany");
-        manufacturer2.setId(2L);
-        System.out.println("New manufacturer: " + manufacturer2);
-        manufacturerService.update(manufacturer2);
-        System.out.println("Second update: " + manufacturerService.getAll());
+        manufacturerService.update(manufacturer1);
+        System.out.println("After update: "
+                + manufacturerService.getAll());
         manufacturerService.delete(1L);
         System.out.println("After delete on ID 1: " + manufacturerService.getAll());
     }
