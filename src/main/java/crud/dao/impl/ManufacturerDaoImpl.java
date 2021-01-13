@@ -4,8 +4,8 @@ import crud.dao.abstraction.ManufacturerDao;
 import crud.lib.DaoImpl;
 import crud.model.Manufacturer;
 import crud.storage.Storage;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @DaoImpl
@@ -17,26 +17,24 @@ public class ManufacturerDaoImpl implements ManufacturerDao {
 
     @Override
     public Optional<Manufacturer> get(Long id) {
-        return Storage.manufacturers.stream()
-                .filter(element -> Objects.equals(element.getId(), id))
-                .findFirst();
+        return Optional.ofNullable(Storage.manufacturers.get(id));
     }
 
     @Override
     public List<Manufacturer> getAll() {
-        return Storage.manufacturers;
+        return new ArrayList<>(Storage.manufacturers.values());
     }
 
     @Override
     public Manufacturer update(Manufacturer manufacturer) {
         Long desiredId = manufacturer.getId();
         Manufacturer oldManufacturer = get(desiredId).get();
-        Storage.manufacturers.set(Storage.manufacturers.indexOf(oldManufacturer), manufacturer);
+        Storage.manufacturers.put(oldManufacturer.getId(), manufacturer);
         return get(desiredId).get();
     }
 
     @Override
     public boolean delete(Long id) {
-        return Storage.manufacturers.removeIf(element -> element.getId().equals(id));
+        return Storage.manufacturers.remove(id) != null;
     }
 }
