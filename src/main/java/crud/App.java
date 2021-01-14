@@ -20,10 +20,10 @@ public class App {
         manufacturerService.create(MANUFACTURER_2);
         manufacturerService.create(MANUFACTURER_3);
         System.out.println(manufacturerService.getAll());
-        System.out.println(manufacturerService.get(26L));
+        System.out.println(manufacturerService.get(2L));
         MANUFACTURER.setName("Ford");
         manufacturerService.update(MANUFACTURER);
-        manufacturerService.delete(27L);
+        manufacturerService.delete(2L);
         System.out.println(manufacturerService.getAll());
     }
 }

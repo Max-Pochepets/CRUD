@@ -7,9 +7,11 @@ import java.util.Properties;
 
 public class ConnectionUtil {
     public static void clearTable(String table) {
-        String query = "DELETE FROM " + table;
+        String clear = "TRUNCATE TABLE " + table;
+        String resetId = "ALTER TABLE " + table + " AUTO_INCREMENT = 1";
         try (Connection connection = getConnection()) {
-            connection.createStatement().executeUpdate(query);
+            connection.createStatement().executeUpdate(clear);
+            connection.createStatement().executeUpdate(resetId);
         } catch (SQLException throwables) {
             throw new RuntimeException("Couldn't establish connection to MySQL server. "
                     + throwables);
