@@ -1,19 +1,17 @@
 package crud;
 
 import crud.lib.Injector;
-import crud.model.Car;
-import crud.model.Driver;
 import crud.model.Manufacturer;
-import crud.service.abstraction.CarService;
-import crud.service.abstraction.DriverService;
 import crud.service.abstraction.ManufacturerService;
+import crud.util.ConnectionUtil;
 
 public class App {
     private static final Injector INJECTOR = Injector.getInstance("crud");
     private static final Manufacturer MANUFACTURER = new Manufacturer("Tesla", "USA");
     private static final Manufacturer MANUFACTURER_2 = new Manufacturer("Audi", "Germany");
     private static final Manufacturer MANUFACTURER_3 = new Manufacturer("Mercedes", "Germany");
-    private static final Car CAR = new Car("Y", MANUFACTURER);
+    private static final String MANUFACTURERS = "manufacturers";
+    /*private static final Car CAR = new Car("Y", MANUFACTURER);
     private static final Car CAR_2 = new Car("RS7", MANUFACTURER_2);
     private static final Car CAR_3 = new Car("E63 S", MANUFACTURER_3);
     private static final Driver DRIVER = new Driver("Ed", "123qwe222113");
@@ -70,5 +68,20 @@ public class App {
             System.out.println("Manufacturers after deleting by ID " + i + ": "
                     + driverService.getAll());
         }
+    }*/
+
+    public static void main(String[] args) {
+        ConnectionUtil.clearTable(MANUFACTURERS);
+        ManufacturerService manufacturerService
+                = (ManufacturerService) INJECTOR.getInstance(ManufacturerService.class);
+        manufacturerService.create(MANUFACTURER);
+        manufacturerService.create(MANUFACTURER_2);
+        manufacturerService.create(MANUFACTURER_3);
+        System.out.println(manufacturerService.getAll());
+        System.out.println(manufacturerService.get(26L));
+        MANUFACTURER.setName("Ford");
+        manufacturerService.update(MANUFACTURER);
+        manufacturerService.delete(27L);
+        System.out.println(manufacturerService.getAll());
     }
 }
