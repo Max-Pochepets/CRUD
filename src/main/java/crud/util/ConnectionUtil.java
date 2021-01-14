@@ -1,5 +1,7 @@
 package crud.util;
 
+import crud.lib.DataBaseException;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -13,8 +15,8 @@ public class ConnectionUtil {
             connection.createStatement().executeUpdate(clear);
             connection.createStatement().executeUpdate(resetId);
         } catch (SQLException throwables) {
-            throw new RuntimeException("Couldn't establish connection to MySQL server. "
-                    + throwables);
+            throw new DataBaseException("Couldn't establish connection to MySQL server. ",
+                    throwables);
         }
     }
 
