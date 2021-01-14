@@ -83,20 +83,7 @@ public class ManufacturerDaoJdBcImpl implements ManufacturerDao {
             preparedStatement.setLong(3, manufacturer.getId());
             preparedStatement.executeUpdate();
             preparedStatement.close();
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(getNewQuery);
-            Manufacturer manufacturerNew = null;
-            if (resultSet.next()) {
-                manufacturerNew
-                        = new Manufacturer(resultSet.getString("name"),
-                                resultSet.getString("country"));
-                manufacturerNew.setId(resultSet.getObject("id", Long.class));
-            }
-            if (manufacturerNew == null) {
-                throw new RuntimeException("Couldn't get new manufacturer");
-            }
-            statement.close();
-            return manufacturerNew;
+            return manufacturer;
         } catch (SQLException throwables) {
             throw new DataBaseException("Couldn't update a specific manufacturer.",
                     throwables);
