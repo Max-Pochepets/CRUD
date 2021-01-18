@@ -37,10 +37,11 @@ public class DriverDaoJdBcImpl implements DriverDao {
     @Override
     public Optional<Driver> get(Long id) {
         String query = "SELECT driver_id, driver_name, driver_license_number FROM drivers "
-                + "WHERE driver_id = " + id + " AND deleted = FALSE";
+                + "WHERE driver_id = ? AND deleted = FALSE";
         try (Connection connection = ConnectionUtil.getConnection();
-                Statement statement = connection.createStatement()) {
-            ResultSet set = statement.executeQuery(query);
+                PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setLong(1, id);
+            ResultSet set = statement.executeQuery();
             Driver driver = null;
             if (set.next()) {
                 driver = setDriver(set);
@@ -56,8 +57,8 @@ public class DriverDaoJdBcImpl implements DriverDao {
         String query = "SELECT * FROM drivers WHERE deleted = FALSE";
         List<Driver> drivers = new ArrayList<>();
         try (Connection connection = ConnectionUtil.getConnection();
-                Statement statement = connection.createStatement()) {
-            ResultSet set = statement.executeQuery(query);
+                PreparedStatement statement = connection.prepareStatement(query)) {
+            ResultSet set = statement.executeQuery();
             while (set.next()) {
                 drivers.add(setDriver(set));
             }
@@ -86,9 +87,10 @@ public class DriverDaoJdBcImpl implements DriverDao {
 
     @Override
     public boolean delete(Long id) {
-        String query = "UPDATE drivers SET deleted = TRUE WHERE driver_id = " + id;
+        String query = "UPDATE drivers SET deleted = TRUE WHERE driver_id = ?";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setLong(1, id);
             return statement.executeUpdate() > 0;
         } catch (SQLException throwables) {
             throw new DataBaseException("Couldn't delete driver with id " + id, throwables);

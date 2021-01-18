@@ -65,24 +65,22 @@ public class CarDaoJdBcImpl implements CarDao {
                 + "JOIN manufacturers m ON m.manufacturer_id = c.manufacturer_id "
                 + "WHERE c.car_id = ? AND c.deleted = FALSE";
         String getDriversQuery = "SELECT d.driver_id, d.driver_name, d.driver_license_number "
-                    + "FROM cars c "
-                + "JOIN cars_drivers cd on c.car_id = cd.cars_id "
+                + "FROM cars_drivers cd "
                 + "JOIN drivers d on d.driver_id = cd.driver_id "
-                + "WHERE c.car_id = ? AND c.deleted = FALSE";
+                + "WHERE cd.cars_id = ?";
         try (Connection connection = ConnectionUtil.getConnection();
-                PreparedStatement statement = connection.prepareStatement(query)) {
+                PreparedStatement statement = connection.prepareStatement(query);
+                PreparedStatement statement2 = connection.prepareStatement(getDriversQuery)) {
             statement.setLong(1, id);
             ResultSet set = statement.executeQuery();
             Car car = null;
             if (set.next()) {
                 car = setCar(set);
-                PreparedStatement statement2 = connection.prepareStatement(getDriversQuery);
                 statement2.setLong(1, id);
                 ResultSet set2 = statement2.executeQuery();
                 while (set2.next()) {
                     car.getDrivers().add(setDriver(set2));
                 }
-                statement2.close();
             }
             return Optional.ofNullable(car);
         } catch (SQLException throwables) {
@@ -113,9 +111,8 @@ public class CarDaoJdBcImpl implements CarDao {
         String updateCar = "UPDATE cars "
                 + "SET car_model = ?, manufacturer_id = ? "
                 + "WHERE car_id = ? AND deleted = FALSE";
-        String deleteRelations = "DELETE cd FROM cars_drivers cd "
-                + "JOIN cars c on c.car_id = cd.cars_id "
-                + "WHERE cars_id = ? AND c.deleted = FALSE";
+        String deleteRelations = "DELETE FROM cars_drivers "
+                + "WHERE cars_id = ?";
         String updateDrivers = "INSERT INTO cars_drivers (driver_id, cars_id) VALUES (?, ?)";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(updateCar);
