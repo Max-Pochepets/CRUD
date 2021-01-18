@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @DaoImpl
-public class ManufacturerDaoJdBcImpl implements ManufacturerDao {
+public class ManufacturerDaoImpl implements ManufacturerDao {
     @Override
     public Manufacturer create(Manufacturer manufacturer) {
         String query = "INSERT INTO manufacturers (manufacturer_name,manufacturer_country) "
@@ -29,9 +29,9 @@ public class ManufacturerDaoJdBcImpl implements ManufacturerDao {
                 manufacturer.setId(resultSet.getObject(1, Long.class));
             }
             return manufacturer;
-        } catch (SQLException throwables) {
+        } catch (SQLException throwable) {
             throw new DataBaseException("Couldn't create manufacturer. " + manufacturer + " ",
-                    throwables);
+                    throwable);
         }
     }
 
@@ -48,9 +48,9 @@ public class ManufacturerDaoJdBcImpl implements ManufacturerDao {
                 manufacturer = setManufacturer(resultSet);
             }
             return Optional.ofNullable(manufacturer);
-        } catch (SQLException throwables) {
+        } catch (SQLException throwable) {
             throw new DataBaseException("Couldn't get manufacturer by id " + id + " ",
-                    throwables);
+                    throwable);
         }
     }
 
@@ -65,10 +65,10 @@ public class ManufacturerDaoJdBcImpl implements ManufacturerDao {
                 manufacturers.add(setManufacturer(resultSet));
             }
             return manufacturers;
-        } catch (SQLException throwables) {
+        } catch (SQLException throwable) {
             throw new DataBaseException("Couldn't get a list of manufacturers "
                     + "from manufacturers table. ",
-                    throwables);
+                    throwable);
         }
     }
 
@@ -82,9 +82,9 @@ public class ManufacturerDaoJdBcImpl implements ManufacturerDao {
             preparedStatement.setLong(3, manufacturer.getId());
             preparedStatement.executeUpdate();
             return manufacturer;
-        } catch (SQLException throwables) {
+        } catch (SQLException throwable) {
             throw new DataBaseException("Couldn't update a manufacturer " + manufacturer + " ",
-                    throwables);
+                    throwable);
         }
     }
 
@@ -95,9 +95,9 @@ public class ManufacturerDaoJdBcImpl implements ManufacturerDao {
                 PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setLong(1, id);
             return preparedStatement.executeUpdate() > 0;
-        } catch (SQLException throwables) {
+        } catch (SQLException throwable) {
             throw new DataBaseException("Couldn't delete a manufacturer by id " + id + " ",
-                    throwables);
+                    throwable);
         }
     }
 

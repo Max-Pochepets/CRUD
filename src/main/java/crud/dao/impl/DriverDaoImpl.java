@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @DaoImpl
-public class DriverDaoJdBcImpl implements DriverDao {
+public class DriverDaoImpl implements DriverDao {
     @Override
     public Driver create(Driver driver) {
         String query = "INSERT INTO drivers (driver_name, driver_license_number) VALUES (?, ?)";
@@ -28,9 +28,9 @@ public class DriverDaoJdBcImpl implements DriverDao {
                 driver.setId(set.getObject(1, Long.class));
             }
             return driver;
-        } catch (SQLException throwables) {
+        } catch (SQLException throwable) {
             throw new DataBaseException("Couldn't create insert "
-                    + driver + " into driversDB. ", throwables);
+                    + driver + " into driversDB. ", throwable);
         }
     }
 
@@ -47,8 +47,8 @@ public class DriverDaoJdBcImpl implements DriverDao {
                 driver = setDriver(set);
             }
             return Optional.ofNullable(driver);
-        } catch (SQLException throwables) {
-            throw new DataBaseException("Couldn't get driver by id " + id, throwables);
+        } catch (SQLException throwable) {
+            throw new DataBaseException("Couldn't get driver by id " + id, throwable);
         }
     }
 
@@ -63,9 +63,9 @@ public class DriverDaoJdBcImpl implements DriverDao {
                 drivers.add(setDriver(set));
             }
             return drivers;
-        } catch (SQLException throwables) {
+        } catch (SQLException throwable) {
             throw new DataBaseException("Couldn't get a list of drivers from driversDB.",
-                    throwables);
+                    throwable);
         }
     }
 
@@ -80,8 +80,8 @@ public class DriverDaoJdBcImpl implements DriverDao {
             statement.setLong(3, driver.getId());
             statement.executeUpdate();
             return driver;
-        } catch (SQLException throwables) {
-            throw new DataBaseException("Couldn't update " + driver + " in driversDB.", throwables);
+        } catch (SQLException throwable) {
+            throw new DataBaseException("Couldn't update " + driver + " in driversDB.", throwable);
         }
     }
 
@@ -92,8 +92,8 @@ public class DriverDaoJdBcImpl implements DriverDao {
                 PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, id);
             return statement.executeUpdate() > 0;
-        } catch (SQLException throwables) {
-            throw new DataBaseException("Couldn't delete driver with id " + id, throwables);
+        } catch (SQLException throwable) {
+            throw new DataBaseException("Couldn't delete driver with id " + id, throwable);
         }
     }
 
