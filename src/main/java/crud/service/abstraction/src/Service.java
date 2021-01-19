@@ -2,14 +2,14 @@ package crud.service.abstraction.src;
 
 import java.util.List;
 
-public interface Service<T> {
+public interface Service<T, I> {
     T create(T element);
 
-    T get(Long id);
+    T get(I id);
 
     List<T> getAll();
 
     T update(T element);
 
-    boolean delete(Long id);
+    boolean delete(I id);
 }
