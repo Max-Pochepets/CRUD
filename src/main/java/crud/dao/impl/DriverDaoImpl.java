@@ -109,7 +109,7 @@ public class DriverDaoImpl implements DriverDao {
     private PreparedStatement setUpdate(PreparedStatement statement,
                                         Driver driver) throws SQLException {
         statement.setString(1, driver.getName());
-        statement.setString(2, driver.getLicenceNumber());
+        statement.setString(2, driver.getLicenseNumber());
         return statement;
     }
 }
