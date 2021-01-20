@@ -6,9 +6,11 @@
     <body>
         <h1>Please provide car's credentials.</h1>
 
+        <h4 style="color: crimson">${message}</h4>
+
         <form method="post" action="${pageContext.request.contextPath}/cars/create">
-            Car's model:<input type="text" name="model">
-            Car's manufacturer's id:<input type="text" name="manufacturersId">
+            Car's model:<input type="text" value="${carModel}" name="model" required>
+            Car's manufacturer's id:<input type="number" min="1" name="manufacturersId" required>
 
             <button type="submit">Create</button>
         </form>

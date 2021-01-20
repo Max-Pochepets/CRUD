@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 public class ClearDataController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
+            throws IOException {
         ConnectionUtil.clearTable();
         resp.sendRedirect(req.getContextPath() + "/");
     }

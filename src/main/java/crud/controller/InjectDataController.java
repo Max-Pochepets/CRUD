@@ -30,31 +30,31 @@ public class InjectDataController extends HttpServlet {
     private static final Driver DRIVER_BOB
             = new Driver("BOB", "IEH709898SDF7689SDF231");
     private static final Injector INJECTOR = Injector.getInstance("crud");
-    private static final ManufacturerService manufacturerService
+    private static final ManufacturerService MANUFACTURER_SERVICE
             = (ManufacturerService) INJECTOR.getInstance(ManufacturerService.class);
-    private static final CarService carService
+    private static final CarService CAR_SERVICE
             = (CarService) INJECTOR.getInstance(CarService.class);
-    private static final DriverService driverService
+    private static final DriverService DRIVER_SERVICE
             = (DriverService) INJECTOR.getInstance(DriverService.class);
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
-        manufacturerService.create(MANUFACTURER);
-        manufacturerService.create(MANUFACTURER_2);
-        manufacturerService.create(MANUFACTURER_3);
-        carService.create(CAR);
-        carService.create(CAR_2);
-        carService.create(CAR_3);
-        driverService.create(DRIVER_ED);
-        driverService.create(DRIVER_JOHN);
-        driverService.create(DRIVER_BOB);
-        carService.addDriverToCar(DRIVER_JOHN, CAR);
-        carService.addDriverToCar(DRIVER_ED, CAR);
-        carService.addDriverToCar(DRIVER_ED, CAR_2);
-        carService.addDriverToCar(DRIVER_BOB, CAR_2);
-        carService.addDriverToCar(DRIVER_JOHN, CAR_3);
-        carService.addDriverToCar(DRIVER_BOB, CAR_3);
+            throws IOException {
+        MANUFACTURER_SERVICE.create(MANUFACTURER);
+        MANUFACTURER_SERVICE.create(MANUFACTURER_2);
+        MANUFACTURER_SERVICE.create(MANUFACTURER_3);
+        CAR_SERVICE.create(CAR);
+        CAR_SERVICE.create(CAR_2);
+        CAR_SERVICE.create(CAR_3);
+        DRIVER_SERVICE.create(DRIVER_ED);
+        DRIVER_SERVICE.create(DRIVER_JOHN);
+        DRIVER_SERVICE.create(DRIVER_BOB);
+        CAR_SERVICE.addDriverToCar(DRIVER_JOHN, CAR);
+        CAR_SERVICE.addDriverToCar(DRIVER_ED, CAR);
+        CAR_SERVICE.addDriverToCar(DRIVER_ED, CAR_2);
+        CAR_SERVICE.addDriverToCar(DRIVER_BOB, CAR_2);
+        CAR_SERVICE.addDriverToCar(DRIVER_JOHN, CAR_3);
+        CAR_SERVICE.addDriverToCar(DRIVER_BOB, CAR_3);
         resp.sendRedirect(req.getContextPath() + "/");
     }
 }

@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 
 public class DeleteDriversController extends HttpServlet {
     private static final Injector INJECTOR = Injector.getInstance("crud");
-    private static final DriverService driverService
+    private static final DriverService DRIVER_SERVICE
             = (DriverService) INJECTOR.getInstance(DriverService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         String id = req.getParameter("id");
-        driverService.delete(Long.valueOf(id));
+        DRIVER_SERVICE.delete(Long.valueOf(id));
         resp.sendRedirect(req.getContextPath() + "/drivers/");
     }
 }

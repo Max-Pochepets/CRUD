@@ -4,11 +4,15 @@
     <title>Delete driver from car</title>
 </head>
 <body>
-    <form method="post" action="${pageContext.request.contextPath}/cars/drivers/delete">
-        Car's id:<input type="text" name="carID">
-        Driver's id:<input type="text" name="driverID">
+    <h1>Please provide car's and driver's id</h1>
 
-        <button type="submit">Create</button>
+    <h4 style="color: crimson">${message}</h4>
+
+    <form method="post" action="${pageContext.request.contextPath}/cars/drivers/delete">
+        Car's id:<input type="number" name="carID" required>
+        Driver's id:<input type="number" name="driverID" required>
+
+        <button type="submit">Delete</button>
     </form>
 
     <p>

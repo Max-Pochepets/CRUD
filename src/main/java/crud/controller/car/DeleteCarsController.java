@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 
 public class DeleteCarsController extends HttpServlet {
     private static final Injector INJECTOR = Injector.getInstance("crud");
-    private static final CarService carService
+    private static final CarService CAR_SERVICE
             = (CarService) INJECTOR.getInstance(CarService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         String id = req.getParameter("id");
-        carService.delete(Long.valueOf(id));
+        CAR_SERVICE.delete(Long.valueOf(id));
         resp.sendRedirect(req.getContextPath() + "/cars/");
     }
 }

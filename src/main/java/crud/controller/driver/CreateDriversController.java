@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class CreateDriversController extends HttpServlet {
     private static final Injector INJECTOR = Injector.getInstance("crud");
-    private static final DriverService driverService
+    private static final DriverService DRIVER_SERVICE
             = (DriverService) INJECTOR.getInstance(DriverService.class);
 
     @Override
@@ -22,10 +22,10 @@ public class CreateDriversController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
+            throws IOException {
         String name = req.getParameter("name");
         String license = req.getParameter("license");
-        driverService.create(new Driver(name, license));
+        DRIVER_SERVICE.create(new Driver(name, license));
         resp.sendRedirect(req.getContextPath() + "/");
     }
 }
