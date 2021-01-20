@@ -34,7 +34,7 @@ public class AddDriverToCarController extends HttpServlet {
             Car car = CAR_SERVICE.get(Long.valueOf(carID));
             Driver driver = DRIVER_SERVICE.get(Long.valueOf(driverID));
             CAR_SERVICE.addDriverToCar(driver, car);
-            resp.sendRedirect(req.getContextPath() + "/cars/all");
+            resp.sendRedirect(req.getContextPath() + "/cars/");
         } catch (NoSuchElementException e) {
             req.setAttribute("message", "Invalid data. Please check if car/driver exists.");
             req.getRequestDispatcher("/WEB-INF/views/cars/drivers/add.jsp").forward(req, resp);

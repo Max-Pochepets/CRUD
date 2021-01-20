@@ -34,7 +34,7 @@ public class DeleteDriverFromCar extends HttpServlet {
             Car car = CAR_SERVICE.get(Long.valueOf(carID));
             Driver driver = driverService.get(Long.valueOf(driverID));
             CAR_SERVICE.removeDriverFromCar(driver, car);
-            resp.sendRedirect(req.getContextPath() + "/cars/all");
+            resp.sendRedirect(req.getContextPath() + "/cars/");
         } catch (NoSuchElementException e) {
             req.setAttribute("message", "Invalid data. Please check if car/driver exists.");
             req.getRequestDispatcher("/WEB-INF/views/cars/drivers/delete.jsp").forward(req, resp);
