@@ -5,7 +5,7 @@ import crud.model.Driver;
 import crud.service.abstraction.src.Service;
 import java.util.List;
 
-public interface CarService extends Service<Car> {
+public interface CarService extends Service<Car, Long> {
     void addDriverToCar(Driver driver, Car car);
 
     void removeDriverFromCar(Driver driver, Car car);
