@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class AuthenticationFilter implements Filter {
+    private static final String DRIVER_ID = "driver_id";
     private static final Injector INJECTOR = Injector.getInstance("crud");
     private final DriverService driverService
             = (DriverService) INJECTOR.getInstance(DriverService.class);
@@ -31,7 +32,7 @@ public class AuthenticationFilter implements Filter {
             chain.doFilter(req, resp);
             return;
         }
-        Long driverId = (Long) req.getSession().getAttribute("driver_id");
+        Long driverId = (Long) req.getSession().getAttribute(DRIVER_ID);
         if (driverId == null || driverService.get(driverId) == null) {
             resp.sendRedirect("/login");
             return;
