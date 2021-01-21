@@ -7,8 +7,8 @@
         <h1>Please provide manufacturers credentials.</h1>
 
         <form method="post" action="${pageContext.request.contextPath}/manufacturers/create">
-            Manufacturer's name:<input type="text" name="name">
-            Manufacturer's country:<input type="text" name="country">
+            Manufacturer's name:<input type="text" name="name" required>
+            Manufacturer's country:<input type="text" name="country" required>
 
             <button type="submit">Create</button>
         </form>

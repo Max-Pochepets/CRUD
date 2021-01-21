@@ -7,8 +7,8 @@
         <h1>Please provide driver's credentials.</h1>
 
         <form method="post" action="${pageContext.request.contextPath}/drivers/create">
-            Driver's name:<input type="text" name="name">
-            Driver's license number:<input type="text" name="license">
+            Driver's name:<input type="text" name="name" required>
+            Driver's license number:<input type="text" name="license" required>
 
             <button type="submit">Create</button>
         </form>
