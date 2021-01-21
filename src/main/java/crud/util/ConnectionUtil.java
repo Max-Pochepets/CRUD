@@ -1,6 +1,6 @@
 package crud.util;
 
-import crud.lib.DataBaseException;
+import crud.lib.exception.DataBaseException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;

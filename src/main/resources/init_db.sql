@@ -42,4 +42,8 @@ CREATE TABLE `taxi`.`cars_drivers` (
                                                REFERENCES `taxi`.`drivers` (driver_id)
                                                ON DELETE NO ACTION
                                                ON UPDATE NO ACTION);
-
+ALTER TABLE `taxi`.`drivers`
+    ADD COLUMN `driver_login` VARCHAR(225) NOT NULL AFTER `driver_license_number`,
+    ADD COLUMN `driver_password` VARCHAR(225) NOT NULL AFTER `driver_login`,
+    ADD UNIQUE INDEX `login_UNIQUE` (`driver_login` ASC) VISIBLE;
+;
