@@ -126,7 +126,7 @@ public class DriverDaoImpl implements DriverDao {
     public Optional<Driver> findByLogin(String login) {
         String query = "SELECT driver_id, driver_name, driver_license_number, "
                 + "driver_login, driver_password "
-                + "FROM drivers WHERE driver_login = ?";
+                + "FROM drivers WHERE driver_login = ? AND deleted = FALSE";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, login);
