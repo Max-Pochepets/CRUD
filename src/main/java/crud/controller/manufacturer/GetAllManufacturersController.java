@@ -12,13 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 
 public class GetAllManufacturersController extends HttpServlet {
     private static final Injector INJECTOR = Injector.getInstance("crud");
-    private final ManufacturerService MANUFACTURER_SERVICE
+    private final ManufacturerService manufacturerService
             = (ManufacturerService) INJECTOR.getInstance(ManufacturerService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        List<Manufacturer> manufacturers = MANUFACTURER_SERVICE.getAll();
+        List<Manufacturer> manufacturers = manufacturerService.getAll();
         req.setAttribute("manufacturers", manufacturers);
         req.getRequestDispatcher("/WEB-INF/views/manufacturers/all.jsp").forward(req, resp);
     }

@@ -13,47 +13,47 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class InjectDataController extends HttpServlet {
-    private final Manufacturer MANUFACTURER
-            = new Manufacturer("Tesla", "USA");
-    private final Manufacturer MANUFACTURER_2
-            = new Manufacturer("Audi", "Germany");
-    private final Manufacturer MANUFACTURER_3
-            = new Manufacturer("Mercedes", "Germany");
-    private final Car CAR = new Car("Y", MANUFACTURER);
-    private final Car CAR_2 = new Car("RS7", MANUFACTURER_2);
-    private final Car CAR_3 = new Car("E63 S", MANUFACTURER_3);
-    private final Driver DRIVER_ED
-            = new Driver("Ed", "123qwe222113");
-    private final Driver DRIVER_JOHN
-            = new Driver("John", "AAAEWWW222JHDSF8899");
-    private final Driver DRIVER_BOB
-            = new Driver("BOB", "IEH709898SDF7689SDF231");
     private static final Injector INJECTOR = Injector.getInstance("crud");
-    private final ManufacturerService MANUFACTURER_SERVICE
+    private final Manufacturer manufacturer
+            = new Manufacturer("Tesla", "USA");
+    private final Manufacturer manufacturer2
+            = new Manufacturer("Audi", "Germany");
+    private final Manufacturer manufacturer3
+            = new Manufacturer("Mercedes", "Germany");
+    private final Car car = new Car("Y", manufacturer);
+    private final Car car2 = new Car("RS7", manufacturer2);
+    private final Car car3 = new Car("E63 S", manufacturer3);
+    private final Driver driverEd
+            = new Driver("Ed", "123qwe222113");
+    private final Driver driverJohn
+            = new Driver("John", "AAAEWWW222JHDSF8899");
+    private final Driver driverBob
+            = new Driver("BOB", "IEH709898SDF7689SDF231");
+    private final ManufacturerService manufacturerService
             = (ManufacturerService) INJECTOR.getInstance(ManufacturerService.class);
-    private final CarService CAR_SERVICE
+    private final CarService carService
             = (CarService) INJECTOR.getInstance(CarService.class);
-    private final DriverService DRIVER_SERVICE
+    private final DriverService driverService
             = (DriverService) INJECTOR.getInstance(DriverService.class);
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws IOException {
-        MANUFACTURER_SERVICE.create(MANUFACTURER);
-        MANUFACTURER_SERVICE.create(MANUFACTURER_2);
-        MANUFACTURER_SERVICE.create(MANUFACTURER_3);
-        CAR_SERVICE.create(CAR);
-        CAR_SERVICE.create(CAR_2);
-        CAR_SERVICE.create(CAR_3);
-        DRIVER_SERVICE.create(DRIVER_ED);
-        DRIVER_SERVICE.create(DRIVER_JOHN);
-        DRIVER_SERVICE.create(DRIVER_BOB);
-        CAR_SERVICE.addDriverToCar(DRIVER_JOHN, CAR);
-        CAR_SERVICE.addDriverToCar(DRIVER_ED, CAR);
-        CAR_SERVICE.addDriverToCar(DRIVER_ED, CAR_2);
-        CAR_SERVICE.addDriverToCar(DRIVER_BOB, CAR_2);
-        CAR_SERVICE.addDriverToCar(DRIVER_JOHN, CAR_3);
-        CAR_SERVICE.addDriverToCar(DRIVER_BOB, CAR_3);
+        manufacturerService.create(manufacturer);
+        manufacturerService.create(manufacturer2);
+        manufacturerService.create(manufacturer3);
+        carService.create(car);
+        carService.create(car2);
+        carService.create(car3);
+        driverService.create(driverEd);
+        driverService.create(driverJohn);
+        driverService.create(driverBob);
+        carService.addDriverToCar(driverJohn, car);
+        carService.addDriverToCar(driverEd, car);
+        carService.addDriverToCar(driverEd, car2);
+        carService.addDriverToCar(driverBob, car2);
+        carService.addDriverToCar(driverJohn, car3);
+        carService.addDriverToCar(driverBob, car3);
         resp.sendRedirect(req.getContextPath() + "/");
     }
 }

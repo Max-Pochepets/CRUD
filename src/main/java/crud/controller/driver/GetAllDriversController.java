@@ -12,13 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 
 public class GetAllDriversController extends HttpServlet {
     private static final Injector INJECTOR = Injector.getInstance("crud");
-    private final DriverService DRIVER_SERVICE
+    private final DriverService driverService
             = (DriverService) INJECTOR.getInstance(DriverService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        List<Driver> drivers = DRIVER_SERVICE.getAll();
+        List<Driver> drivers = driverService.getAll();
         req.setAttribute("drivers", drivers);
         req.getRequestDispatcher("/WEB-INF/views/drivers/all.jsp").forward(req, resp);
     }

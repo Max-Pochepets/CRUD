@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 
 public class DeleteManufacturerController extends HttpServlet {
     private static final Injector INJECTOR = Injector.getInstance("crud");
-    private final ManufacturerService MANUFACTURER_SERVICE
+    private final ManufacturerService manufacturerService
             = (ManufacturerService) INJECTOR.getInstance(ManufacturerService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         String id = req.getParameter("manufacturer_id");
-        MANUFACTURER_SERVICE.delete(Long.valueOf(id));
+        manufacturerService.delete(Long.valueOf(id));
         resp.sendRedirect(req.getContextPath() + "/manufacturers/");
     }
 }

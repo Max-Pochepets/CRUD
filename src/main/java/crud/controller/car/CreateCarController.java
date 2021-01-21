@@ -6,7 +6,6 @@ import crud.model.Manufacturer;
 import crud.service.abstraction.CarService;
 import crud.service.abstraction.ManufacturerService;
 import java.io.IOException;
-import java.util.NoSuchElementException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,9 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 
 public class CreateCarController extends HttpServlet {
     private static final Injector INJECTOR = Injector.getInstance("crud");
-    private final CarService CAR_SERVICE
+    private final CarService carService
             = (CarService) INJECTOR.getInstance(CarService.class);
-    private final ManufacturerService MANUFACTURER_SERVICE
+    private final ManufacturerService manufacturerService
             = (ManufacturerService) INJECTOR.getInstance(ManufacturerService.class);
 
     @Override
@@ -27,17 +26,11 @@ public class CreateCarController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
-        try {
-            String model = req.getParameter("car_model");
-            String manufacturerId = req.getParameter("manufacturer_id");
-            Manufacturer manufacturer = MANUFACTURER_SERVICE.get(Long.valueOf(manufacturerId));
-            CAR_SERVICE.create(new Car(model, manufacturer));
-            resp.sendRedirect(req.getContextPath() + "/");
-        } catch (NoSuchElementException e) {
-            req.setAttribute("message", "Invalid data. No such manufacturer present.");
-            req.setAttribute("carModel", req.getParameter("model"));
-            req.getRequestDispatcher("/WEB-INF/views/cars/create.jsp").forward(req, resp);
-        }
+            throws IOException {
+        String model = req.getParameter("car_model");
+        String manufacturerId = req.getParameter("manufacturer_id");
+        Manufacturer manufacturer = manufacturerService.get(Long.valueOf(manufacturerId));
+        carService.create(new Car(model, manufacturer));
+        resp.sendRedirect(req.getContextPath() + "/");
     }
 }
