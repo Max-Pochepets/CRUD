@@ -9,9 +9,6 @@
     <form style="display: inline" method="post" action="${pageContext.request.contextPath}/inject">
         <button type="submit">Inject data</button>
     </form>
-    <form style="display: inline" method="post" action="${pageContext.request.contextPath}/clear">
-        <button type="submit">Clear data</button>
-    </form>
 
     <h3>Cars</h3>
         <form action="${pageContext.request.contextPath}/cars/">

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class GetAllDriversController extends HttpServlet {
     private static final Injector INJECTOR = Injector.getInstance("crud");
-    private static final DriverService DRIVER_SERVICE
+    private final DriverService DRIVER_SERVICE
             = (DriverService) INJECTOR.getInstance(DriverService.class);
 
     @Override

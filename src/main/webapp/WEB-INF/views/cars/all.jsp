@@ -43,7 +43,7 @@
                         </c:forEach>
                     </td>
                     <td>
-                        <a href="${pageContext.request.contextPath}/cars/delete?id=${car.id}">
+                        <a href="${pageContext.request.contextPath}/cars/delete?car_id=${car.id}">
                             <button type="submit">Delete</button>
                         </a>
                     </td>

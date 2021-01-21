@@ -12,11 +12,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class CreateCarsController extends HttpServlet {
+public class CreateCarController extends HttpServlet {
     private static final Injector INJECTOR = Injector.getInstance("crud");
-    private static final CarService CAR_SERVICE
+    private final CarService CAR_SERVICE
             = (CarService) INJECTOR.getInstance(CarService.class);
-    private static final ManufacturerService MANUFACTURER_SERVICE
+    private final ManufacturerService MANUFACTURER_SERVICE
             = (ManufacturerService) INJECTOR.getInstance(ManufacturerService.class);
 
     @Override
@@ -29,8 +29,8 @@ public class CreateCarsController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         try {
-            String model = req.getParameter("model");
-            String manufacturerId = req.getParameter("manufacturersId");
+            String model = req.getParameter("car_model");
+            String manufacturerId = req.getParameter("manufacturer_id");
             Manufacturer manufacturer = MANUFACTURER_SERVICE.get(Long.valueOf(manufacturerId));
             CAR_SERVICE.create(new Car(model, manufacturer));
             resp.sendRedirect(req.getContextPath() + "/");

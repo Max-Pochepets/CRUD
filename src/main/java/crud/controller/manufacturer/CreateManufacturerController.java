@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class CreateManufacturerController extends HttpServlet {
     private static final Injector INJECTOR = Injector.getInstance("crud");
-    private static final ManufacturerService MANUFACTURER_SERVICE
+    private final ManufacturerService MANUFACTURER_SERVICE
             = (ManufacturerService) INJECTOR.getInstance(ManufacturerService.class);
 
     @Override
@@ -23,8 +23,8 @@ public class CreateManufacturerController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws IOException {
-        String name = req.getParameter("name");
-        String country = req.getParameter("country");
+        String name = req.getParameter("manufacturer_id");
+        String country = req.getParameter("manufacturer_country");
         MANUFACTURER_SERVICE.create(new Manufacturer(name, country));
         resp.sendRedirect(req.getContextPath() + "/");
     }

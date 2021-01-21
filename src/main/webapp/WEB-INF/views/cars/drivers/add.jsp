@@ -9,8 +9,8 @@
     <h4 style="color: crimson">${message}</h4>
 
     <form method="post" action="${pageContext.request.contextPath}/cars/drivers/add">
-        Car's id:<input type="number" name="carID" required>
-        Driver's id:<input type="number" name="driverID" required>
+        Car's id:<input type="number" name="car_id" required>
+        Driver's id:<input type="number" name="driver_id" required>
 
         <button type="submit">Add</button>
     </form>

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class GetAllManufacturersController extends HttpServlet {
     private static final Injector INJECTOR = Injector.getInstance("crud");
-    private static final ManufacturerService MANUFACTURER_SERVICE
+    private final ManufacturerService MANUFACTURER_SERVICE
             = (ManufacturerService) INJECTOR.getInstance(ManufacturerService.class);
 
     @Override

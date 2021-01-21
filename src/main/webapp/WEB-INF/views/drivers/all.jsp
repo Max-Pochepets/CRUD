@@ -26,7 +26,7 @@
                         <c:out value="${driver.licenseNumber}"/>
                     </td>
                     <td>
-                        <a href="${pageContext.request.contextPath}/drivers/delete?id=${driver.id}">
+                        <a href="${pageContext.request.contextPath}/drivers/delete?driver_id=${driver.id}">
                             <button type="submit">Delete</button>
                         </a>
                     </td>

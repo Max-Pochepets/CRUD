@@ -14,9 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 
 public class DeleteDriverFromCar extends HttpServlet {
     private static final Injector INJECTOR = Injector.getInstance("crud");
-    private static final CarService CAR_SERVICE
+    private final CarService CAR_SERVICE
             = (CarService) INJECTOR.getInstance(CarService.class);
-    private static final DriverService driverService
+    private final DriverService driverService
             = (DriverService) INJECTOR.getInstance(DriverService.class);
 
     @Override
@@ -29,8 +29,8 @@ public class DeleteDriverFromCar extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         try {
-            String carID = req.getParameter("carID");
-            String driverID = req.getParameter("driverID");
+            String carID = req.getParameter("car_id");
+            String driverID = req.getParameter("driver_id");
             Car car = CAR_SERVICE.get(Long.valueOf(carID));
             Driver driver = driverService.get(Long.valueOf(driverID));
             CAR_SERVICE.removeDriverFromCar(driver, car);
