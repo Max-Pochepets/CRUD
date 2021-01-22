@@ -19,7 +19,7 @@
                     <h4>Login</h4>
                     <input type="text" name="login" required>
                     <h4>Password</h4>
-                    <input type="text" name="password" required>
+                    <input type="password" name="password" required>
                     <br/>
                     <br/>
                     <button type="submit">Log in</button>

@@ -33,7 +33,7 @@ public class AuthenticationFilter implements Filter {
             return;
         }
         Long driverId = (Long) req.getSession().getAttribute(DRIVER_ID);
-        if (driverId == null) {
+        if (driverId == null || driverService.get(driverId) == null) {
             resp.sendRedirect("/login");
             return;
         }
