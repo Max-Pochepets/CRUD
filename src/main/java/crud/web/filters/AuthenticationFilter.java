@@ -3,6 +3,8 @@ package crud.web.filters;
 import crud.lib.Injector;
 import crud.service.abstraction.DriverService;
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -15,11 +17,14 @@ import javax.servlet.http.HttpServletResponse;
 public class AuthenticationFilter implements Filter {
     private static final String DRIVER_ID = "driver_id";
     private static final Injector INJECTOR = Injector.getInstance("crud");
+    private final Set<String> urls = new HashSet<>();
     private final DriverService driverService
             = (DriverService) INJECTOR.getInstance(DriverService.class);
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig filterConfig) {
+        urls.add("/login");
+        urls.add("/drivers/create");
     }
 
     @Override
@@ -28,7 +33,7 @@ public class AuthenticationFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
         String servletPath = req.getServletPath();
-        if (servletPath.equals("/login") || servletPath.equals("/drivers/create")) {
+        if (urls.contains(servletPath)) {
             chain.doFilter(req, resp);
             return;
         }
