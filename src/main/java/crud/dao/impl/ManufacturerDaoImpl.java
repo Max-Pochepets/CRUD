@@ -2,7 +2,7 @@ package crud.dao.impl;
 
 import crud.dao.abstraction.ManufacturerDao;
 import crud.lib.DaoImpl;
-import crud.lib.DataBaseException;
+import crud.lib.exception.DataBaseException;
 import crud.model.Manufacturer;
 import crud.util.ConnectionUtil;
 import java.sql.Connection;

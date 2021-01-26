@@ -50,7 +50,6 @@
                 </tr>
             </c:forEach>
         </table>
-
         <p>
             <form style="display: inline" method="get" action="${pageContext.request.contextPath}/cars/create">
                 <button type="submit">Create a car</button>

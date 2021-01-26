@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class InjectDataController extends HttpServlet {
-    private static final Injector INJECTOR = Injector.getInstance("crud");
+    private static final Injector injector = Injector.getInstance("crud");
     private final Manufacturer manufacturer
             = new Manufacturer("Tesla", "USA");
     private final Manufacturer manufacturer2
@@ -24,17 +24,17 @@ public class InjectDataController extends HttpServlet {
     private final Car car2 = new Car("RS7", manufacturer2);
     private final Car car3 = new Car("E63 S", manufacturer3);
     private final Driver driverEd
-            = new Driver("Ed", "123qwe222113");
+            = new Driver("Ed", "123qwe222113", "ED", "1234");
     private final Driver driverJohn
-            = new Driver("John", "AAAEWWW222JHDSF8899");
+            = new Driver("John", "AAAEWWW222JHDSF8899", "JOHN", "1234");
     private final Driver driverBob
-            = new Driver("BOB", "IEH709898SDF7689SDF231");
+            = new Driver("Bob", "IEH709898SDF7689SDF231", "BOB", "1234");
     private final ManufacturerService manufacturerService
-            = (ManufacturerService) INJECTOR.getInstance(ManufacturerService.class);
+            = (ManufacturerService) injector.getInstance(ManufacturerService.class);
     private final CarService carService
-            = (CarService) INJECTOR.getInstance(CarService.class);
+            = (CarService) injector.getInstance(CarService.class);
     private final DriverService driverService
-            = (DriverService) INJECTOR.getInstance(DriverService.class);
+            = (DriverService) injector.getInstance(DriverService.class);
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)

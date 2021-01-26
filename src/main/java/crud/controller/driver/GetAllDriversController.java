@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class GetAllDriversController extends HttpServlet {
-    private static final Injector INJECTOR = Injector.getInstance("crud");
+    private static final Injector injector = Injector.getInstance("crud");
     private final DriverService driverService
-            = (DriverService) INJECTOR.getInstance(DriverService.class);
+            = (DriverService) injector.getInstance(DriverService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)

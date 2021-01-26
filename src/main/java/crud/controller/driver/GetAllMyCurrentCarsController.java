@@ -1,4 +1,4 @@
-package crud.controller.car;
+package crud.controller.driver;
 
 import crud.lib.Injector;
 import crud.model.Car;
@@ -10,17 +10,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class GetAllCarsController extends HttpServlet {
-    private static final Injector injector
-            = Injector.getInstance("crud");
+public class GetAllMyCurrentCarsController extends HttpServlet {
+    private static final String DRIVER_ID = "driver_id";
+    private static final Injector injector = Injector.getInstance("crud");
     private final CarService carService
             = (CarService) injector.getInstance(CarService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        List<Car> cars = carService.getAll();
-        req.setAttribute("cars", cars);
+        Long driverId = (Long) req.getSession().getAttribute(DRIVER_ID);
+        List<Car> allCarsByDriver = carService.getAllByDriver(driverId);
+        req.setAttribute("cars", allCarsByDriver);
         req.getRequestDispatcher("/WEB-INF/views/cars/all.jsp").forward(req, resp);
     }
 }

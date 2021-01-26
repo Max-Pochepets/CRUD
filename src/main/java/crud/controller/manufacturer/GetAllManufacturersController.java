@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class GetAllManufacturersController extends HttpServlet {
-    private static final Injector INJECTOR = Injector.getInstance("crud");
+    private static final Injector injector = Injector.getInstance("crud");
     private final ManufacturerService manufacturerService
-            = (ManufacturerService) INJECTOR.getInstance(ManufacturerService.class);
+            = (ManufacturerService) injector.getInstance(ManufacturerService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)

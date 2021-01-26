@@ -5,7 +5,7 @@ import static crud.dao.impl.ManufacturerDaoImpl.setManufacturer;
 
 import crud.dao.abstraction.CarDao;
 import crud.lib.DaoImpl;
-import crud.lib.DataBaseException;
+import crud.lib.exception.DataBaseException;
 import crud.model.Car;
 import crud.model.Driver;
 import crud.util.ConnectionUtil;
@@ -156,7 +156,8 @@ public class CarDaoImpl implements CarDao {
     }
 
     private void getAllDriversByCar(Connection connection, Car car) throws SQLException {
-        String getDriversQuery = "SELECT d.driver_id, d.driver_name, d.driver_license_number "
+        String getDriversQuery = "SELECT d.driver_id, d.driver_name, d.driver_license_number, "
+                + "d.driver_login, d.driver_password "
                 + "FROM cars_drivers cd "
                 + "JOIN drivers d on d.driver_id = cd.driver_id "
                 + "WHERE cd.cars_id = ? AND d.deleted = FALSE";
