@@ -16,15 +16,15 @@ import javax.servlet.http.HttpServletResponse;
 
 public class AuthenticationFilter implements Filter {
     private static final String DRIVER_ID = "driver_id";
-    private static final Injector INJECTOR = Injector.getInstance("crud");
-    private final Set<String> urls = new HashSet<>();
+    private static final Injector injector = Injector.getInstance("crud");
+    private final Set<String> allowedUrls = new HashSet<>();
     private final DriverService driverService
-            = (DriverService) INJECTOR.getInstance(DriverService.class);
+            = (DriverService) injector.getInstance(DriverService.class);
 
     @Override
     public void init(FilterConfig filterConfig) {
-        urls.add("/login");
-        urls.add("/drivers/create");
+        allowedUrls.add("/login");
+        allowedUrls.add("/drivers/create");
     }
 
     @Override
@@ -33,12 +33,12 @@ public class AuthenticationFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
         String servletPath = req.getServletPath();
-        if (urls.contains(servletPath)) {
+        if (allowedUrls.contains(servletPath)) {
             chain.doFilter(req, resp);
             return;
         }
         Long driverId = (Long) req.getSession().getAttribute(DRIVER_ID);
-        if (driverId == null || driverService.get(driverId) == null) {
+        if (driverId == null) {
             resp.sendRedirect("/login");
             return;
         }

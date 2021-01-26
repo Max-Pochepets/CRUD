@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 
 public class GetAllMyCurrentCarsController extends HttpServlet {
     private static final String DRIVER_ID = "driver_id";
-    private static final Injector INJECTOR = Injector.getInstance("crud");
+    private static final Injector injector = Injector.getInstance("crud");
     private final CarService carService
-            = (CarService) INJECTOR.getInstance(CarService.class);
+            = (CarService) injector.getInstance(CarService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)

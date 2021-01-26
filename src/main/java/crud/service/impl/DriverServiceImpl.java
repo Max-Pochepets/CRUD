@@ -20,10 +20,7 @@ public class DriverServiceImpl implements DriverService {
 
     @Override
     public Driver get(Long id) {
-        if (driverDao.get(id).isPresent()) {
-            return driverDao.get(id).get();
-        }
-        return null;
+        return driverDao.get(id).get();
     }
 
     @Override

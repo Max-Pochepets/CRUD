@@ -13,9 +13,9 @@ import javax.servlet.http.HttpSession;
 
 public class LoginController extends HttpServlet {
     private static final String DRIVER_ID = "driver_id";
-    private static final Injector INJECTOR = Injector.getInstance("crud");
+    private static final Injector injector = Injector.getInstance("crud");
     private final AuthenticationService authenticationService
-            = (AuthenticationService) INJECTOR.getInstance(AuthenticationService.class);
+            = (AuthenticationService) injector.getInstance(AuthenticationService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
