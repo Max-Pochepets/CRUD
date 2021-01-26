@@ -1,7 +1,5 @@
 package crud.web.filters;
 
-import crud.lib.Injector;
-import crud.service.abstraction.DriverService;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
@@ -16,10 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class AuthenticationFilter implements Filter {
     private static final String DRIVER_ID = "driver_id";
-    private static final Injector injector = Injector.getInstance("crud");
     private final Set<String> allowedUrls = new HashSet<>();
-    private final DriverService driverService
-            = (DriverService) injector.getInstance(DriverService.class);
 
     @Override
     public void init(FilterConfig filterConfig) {
